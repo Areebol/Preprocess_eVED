@@ -208,3 +208,6 @@ __marimo__/
 
 *.csv
 eVED.zip
+osm_speed_features/
+_osm_features/
+cache/
