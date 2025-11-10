@@ -16,3 +16,8 @@ step 4 构建距离特征，为后续划分50米 segment做铺垫
 数据分析
 step 1 分析不同VehId的行程数量，行程长度等
 
+
+v1: segmented_50m_eVED_trafficlight， 在eVED基础上增加了traffic light的标识
+v2: segmented_50m_eVED_trafficcalming, 在eVED基础上增加了traffic calming的category标识
+v3: segmented_50m_eVED_roads, 在eVED基础上, 在cVED基础上增加了道路路况的category标识
+
