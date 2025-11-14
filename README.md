@@ -1,23 +1,30 @@
-该仓库用于从eVED数据集中提取EV和PHEV车辆行程数据，构建50米为单位的cycle数据集
+This repository is used to extract EV and PHEV vehicle trip data from the eVED dataset, constructing a cycle dataset segmented in 50-meter units.
 
-step 1 下载eVED数据集以及VED的静态数据
-1. [eVED](https://github.com/zhangsl2013/eVED)
-2. [VED](https://github.com/gsoh/VED)
+Step 1: Download the eVED dataset and VED static data  
+1. [eVED](https://github.com/zhangsl2013/eVED)  
+2. [VED](https://github.com/gsoh/VED)  
 
-step 2 提取EV和PHEV的车辆id
+Step 2: Extract vehicle IDs for EVs and PHEVs  
 `preprocess/Extract_VehId_From_Static.py`
 
-step 3 提取某一车辆id的所有行程数据，每个行程数据用一个csv文件保存
+Step 3: Extract all trip data for a specific vehicle ID, with each trip saved as a CSV file  
 `preprocess/Filter_VehId.py`
 
-step 4 构建距离特征，为后续划分50米 segment做铺垫
+Step 4: Construct distance features to prepare for segmenting into 50-meter units  
 `preprocess/Split_2_Segments.py`
 
-数据分析
-step 1 分析不同VehId的行程数量，行程长度等
+Step 5: Extract OSM features
+`preprocess/Extract_LL_From_eVED.py` extract Lalitude/Longitude Range in eVED
+# ==== Dataset Latitude/Longitude Range ====
+# Latitude range: 42.220268 ~ 42.325853
+# Longitude range: -83.804839 ~ -83.673437
 
+`preprocess/Extract_From_OSM.py` use OSM apis to extract road conditions and traffic lights etc.
 
-v1: segmented_50m_eVED_trafficlight， 在eVED基础上增加了traffic light的标识
-v2: segmented_50m_eVED_trafficcalming, 在eVED基础上增加了traffic calming的category标识
-v3: segmented_50m_eVED_roads, 在eVED基础上, 在cVED基础上增加了道路路况的category标识
+Step 6: Construct distance features with OSM features
+`preprocess/Split_2_Segments_With_TrafficLights.py`
+`preprocess/Split_2_Segments_With_TRafficCalming.py`
 
+Versions:  
+- `segmented_50m_eVED_trafficlight` – Adds traffic light identifiers to the eVED base.  
+- `segmented_50m_eVED_trafficcalming` – Adds traffic calming category identifiers to the eVED base.  
